@@ -1,0 +1,79 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper Primitives
+    function isSignedIn() { return request.auth != null; }
+    function isVerified() { return isSignedIn() && request.auth.token.email_verified == true; }
+    function isOwner(userId) { return isSignedIn() && request.auth.uid == userId; }
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+    function isValidId(id) { return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); }
+
+    function isTenantUser(tenantId) {
+      return isSignedIn() && (request.auth.uid == tenantId || get(/databases/$(database)/documents/users/$(request.auth.uid)).data.tenantId == tenantId);
+    }
+
+    // USERS
+    match /users/{userId} {
+      allow get: if isSignedIn() && (request.auth.uid == userId || isTenantUser(existing().tenantId));
+      allow list: if isSignedIn() && isTenantUser(resource.data.tenantId);
+      allow create: if isSignedIn() && request.auth.uid == userId;
+      allow update: if isSignedIn() && (request.auth.uid == userId || isTenantUser(existing().tenantId));
+    }
+
+    // INVITES
+    match /invites/{inviteId} {
+      allow create: if isTenantUser(incoming().tenantId);
+      allow read, update, delete: if isTenantUser(resource.data.tenantId);
+    }
+
+
+    // Paciente Validation
+    function isValidPaciente(data) {
+      return data.keys().hasAll(['nome', 'userId', 'createdAt', 'updatedAt']) &&
+             data.nome is string && data.nome.size() <= 200 &&
+             data.userId == request.auth.uid &&
+             data.createdAt is string &&
+             data.updatedAt is string;
+    }
+
+    // PACIENTES
+    match /pacientes/{pacienteId} {
+      allow create: if isSignedIn() && isValidPaciente(incoming()) && isValidId(pacienteId);
+      allow get, list: if isSignedIn() && existing().userId == request.auth.uid;
+      allow update: if isSignedIn() && 
+                      existing().userId == request.auth.uid && 
+                      isValidPaciente(incoming()) &&
+                      incoming().userId == existing().userId &&
+                      incoming().createdAt == existing().createdAt;
+      allow delete: if isSignedIn() && existing().userId == request.auth.uid;
+
+      // SUBCOLLECTIONS (Anamneses, Consultas, Prescricoes)
+      match /anamneses/{id} {
+        allow read, write: if isSignedIn() && get(/databases/$(database)/documents/pacientes/$(pacienteId)).data.userId == request.auth.uid;
+      }
+      match /consultas/{id} {
+        allow read, write: if isSignedIn() && get(/databases/$(database)/documents/pacientes/$(pacienteId)).data.userId == request.auth.uid;
+      }
+      match /prescricoes/{id} {
+        allow read, write: if isSignedIn() && get(/databases/$(database)/documents/pacientes/$(pacienteId)).data.userId == request.auth.uid;
+      }
+      match /exames/{id} {
+        allow read, write: if isSignedIn() && get(/databases/$(database)/documents/pacientes/$(pacienteId)).data.userId == request.auth.uid;
+      }
+    }
+    
+    // Collection Group Queries
+    match /{path=**}/consultas/{id} {
+      allow list, get: if isSignedIn() && resource.data.userId == request.auth.uid;
+    }
+    match /{path=**}/anamneses/{id} {
+      allow list, get: if isSignedIn() && resource.data.userId == request.auth.uid;
+    }
+  }
+}

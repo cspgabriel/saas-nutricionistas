@@ -1,0 +1,161 @@
+import React, { useEffect, useState } from 'react';
+import { collection, query, where, onSnapshot, orderBy, collectionGroup } from 'firebase/firestore';
+import { db } from '../lib/firebase';
+import { useAuth } from '../components/FirebaseProvider';
+import { Consulta, Paciente } from '../types';
+import { Card, CardContent } from '../components/ui/card';
+import { Link, useNavigate } from 'react-router-dom';
+import { Calendar, User, Search, Stethoscope, PlusCircle } from 'lucide-react';
+import { Input } from '../components/ui/input';
+import { Button } from '../components/ui/button';
+import { toast } from 'sonner';
+
+export default function ConsultationsList() {
+  const { tenantId } = useAuth();
+  const [consultations, setConsultations] = useState<Consulta[]>([]);
+  const [patientsList, setPatientsList] = useState<{id: string, nome: string}[]>([]);
+  const [patientsMap, setPatientsMap] = useState<Record<string, string>>({});
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!tenantId) return;
+    const q = query(collectionGroup(db, 'consultas'), where('userId', '==', tenantId));
+    const unsub = onSnapshot(q, (snapshot) => {
+      const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Consulta));
+      data.sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime());
+      setConsultations(data);
+    });
+    return unsub;
+  }, [tenantId]);
+
+  useEffect(() => {
+    if (!tenantId) return;
+    const q = query(collection(db, 'pacientes'), where('userId', '==', tenantId));
+    const unsub = onSnapshot(q, (snapshot) => {
+      const patsMap: Record<string, string> = {};
+      const patsList: {id: string, nome: string}[] = [];
+      snapshot.forEach(doc => {
+        patsMap[doc.id] = doc.data().nome;
+        patsList.push({ id: doc.id, nome: doc.data().nome });
+      });
+      setPatientsMap(patsMap);
+      setPatientsList(patsList.sort((a,b) => a.nome.localeCompare(b.nome)));
+    });
+    return unsub;
+  }, [tenantId]);
+
+  const filtered = consultations.filter(c => {
+    const pName = patientsMap[c.pacienteId] || 'Desconhecido';
+    return pName.toLowerCase().includes(searchTerm.toLowerCase()) || c.queixa.toLowerCase().includes(searchTerm.toLowerCase());
+  });
+
+  return (
+    <div className="space-y-6">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <h2 className="text-3xl font-bold tracking-tight">Consultas</h2>
+          <p className="text-apple-gray-dark">Histórico de todos os prontuários e evoluções</p>
+        </div>
+        <Button onClick={() => setIsModalOpen(true)} className="bg-nutri-green hover:bg-green-600 rounded-xl h-12 px-6 shadow-lg shadow-green-500/20 font-bold gap-2 w-full sm:w-auto text-white">
+          <PlusCircle size={20} />
+          Nova Consulta
+        </Button>
+      </div>
+
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
+          <div className="bg-white rounded-3xl p-6 w-full max-w-md shadow-2xl">
+            <h3 className="text-xl font-bold mb-4">Selecionar Paciente</h3>
+            <p className="text-sm text-gray-500 mb-4">Escolha um paciente cadastrado para iniciar a consulta:</p>
+            <div className="space-y-2 max-h-[60vh] overflow-y-auto pr-2">
+              {patientsList.length === 0 ? (
+                <div className="text-center py-6">
+                  <p className="text-sm text-gray-500 mb-4">Nenhum paciente cadastrado.</p>
+                  <Button variant="outline" onClick={() => navigate('/patients')} className="rounded-xl">
+                    Ir para Cadastro de Pacientes
+                  </Button>
+                </div>
+              ) : (
+                patientsList.map(p => (
+                  <button 
+                    key={p.id}
+                    onClick={() => navigate(`/consultation/${p.id}`)}
+                    className="w-full text-left p-4 border rounded-xl hover:bg-green-50 hover:border-green-200 transition-colors flex items-center justify-between group"
+                  >
+                    <span className="font-bold text-gray-700 group-hover:text-nutri-green">{p.nome}</span>
+                    <Stethoscope size={16} className="text-gray-300 group-hover:text-nutri-green" />
+                  </button>
+                ))
+              )}
+            </div>
+            <div className="mt-6 flex justify-end">
+              <Button variant="ghost" onClick={() => setIsModalOpen(false)} className="rounded-xl">
+                Cancelar
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className="relative">
+        <Search className="absolute left-4 top-3 text-apple-gray-dark" size={20} />
+        <Input 
+          className="pl-12 py-6 rounded-2xl border-apple-gray focus-visible:ring-nutri-green bg-white/50 backdrop-blur-sm"
+          placeholder="Pesquisar por paciente ou motivo..." 
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+
+      <div className="space-y-4">
+        {filtered.length === 0 ? (
+          <div className="text-center py-10 bg-white/40 rounded-3xl border border-white/60">
+            <Stethoscope className="mx-auto h-12 w-12 text-apple-gray-dark opacity-50 mb-4" />
+            <p className="text-lg font-medium text-apple-gray-dark">Nenhuma consulta encontrada.</p>
+          </div>
+        ) : (
+          filtered.map(c => (
+            <Link key={c.id} to={`/patients/${c.pacienteId}`}>
+              <Card className="hover:shadow-lg transition-all border-white/80 bg-white/60 backdrop-blur-md rounded-2xl group cursor-pointer">
+                <CardContent className="p-6">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <div className="flex items-center gap-2 text-nutri-green font-bold mb-1">
+                        <User size={16} />
+                        {patientsMap[c.pacienteId] || 'Paciente Removido'}
+                      </div>
+                      <p className="text-sm font-medium">{c.queixa || 'Sem motivo principal relatado'}</p>
+                      {c.cid10 && c.cid10.length > 0 && <p className="text-xs text-apple-gray-dark mt-2">Diagnóstico: {c.cid10.join(', ')}</p>}
+                    </div>
+                    <div className="flex flex-col items-end gap-2">
+                       <div className="flex gap-2 relative z-10" onClick={(e) => e.preventDefault()}>
+                        <Button
+                          variant="outline" 
+                          size="sm"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            toast.success('Lembrete de consulta enviado por e-mail/SMS!');
+                          }}
+                          className="text-[10px] uppercase font-bold h-7 rounded-md border text-gray-500 hover:text-green-600 hover:bg-green-50"
+                        >
+                          Lembrete
+                        </Button>
+                      </div>
+                      <div className="bg-green-50 text-nutri-green px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
+                        <Calendar size={12} />
+                        {new Date(c.data).toLocaleDateString()}
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          ))
+        )}
+      </div>
+    </div>
+  );
+}

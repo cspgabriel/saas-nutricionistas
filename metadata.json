@@ -1,0 +1,8 @@
+{
+  "name": "NutriSystem Manager",
+  "description": "Sistema completo para gestão de consultórios de nutrição, prontuários, planos alimentares e acompanhamento de pacientes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
