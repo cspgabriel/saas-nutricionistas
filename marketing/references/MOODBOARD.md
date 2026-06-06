@@ -52,5 +52,29 @@ Objetivo: extrair padrões visuais que funcionam, evitar clichês saturados, pos
 
 - `references/dietsystem/` — 7 imagens (dashboard, mockups, WhatsApp)
 - `references/dietitian/` — 5 imagens (mockup iPhone, telas, hero)
-- `references/dietbox/` — _vazio (Instagram bloqueia sem login)_
-- `references/webdiet/` — _vazio (Instagram bloqueia sem login)_
+- `references/appstore/dietbox-prof/` — 6 prints App Store (app dos nutris)
+- `references/appstore/dietbox-paciente/` — 3 prints App Store (app dos pacientes)
+- `references/appstore/webdiet-paciente/` — 3 prints App Store
+
+## Análise visual atualizada (rodada 2 — App Store)
+
+### Dietbox (ousado)
+- Fundo cinza-claro com **splatters/estrelas decorativos** em verde-flúor, violeta e ciano
+- iPhone 14 Pro com bezel realista, leve inclinação
+- Mockup do app dentro preenche a tela
+- Tipografia mista: serif itálica (*destaque*) + sans-serif
+- Palavra-chave em itálico colorido (verde ou violeta)
+- Headline curta (3-5 palavras), com hierarquia clara
+
+### WebDiet (sóbrio)
+- iPhone único, centralizado, **com bezel cinza-prata + home button** (visual mais antigo)
+- Mockup tela cheia
+- Headline acima do device, **palavra em verde+itálico** como destaque
+- Sem decoração — fundo branco/cinza neutro
+- Tom mais clínico, menos hype
+
+### O que adotar pro NutriSystem
+1. **Splatter verde-menta + violeta** (versão sóbria do Dietbox, usando nossa paleta) em **1-2 posts** do mês — pra dar quebra de ritmo.
+2. **iPhone com mockup do app real** — adotar como template padrão (já fizemos).
+3. **Itálico colorido na palavra-chave** — substituir alguns negritos por `<em>` com cor verde.
+4. **NÃO copiar**: a estética "splash flúor" é muito Dietbox. Fazer versão minimalista própria — splatter mais sutil, cores menos saturadas.

@@ -52,6 +52,48 @@ function render(slide) {
         ${logoWhite}`;
       return shell(inner, B.green, '#fff');
     }
+    case 'phone-spotlight': {
+      // Inspirado em Dietbox: splatters + iPhone + headline com palavra em italico verde
+      const splatter = (color, x, y, size, rot) => `<svg style="position:absolute;left:${x};top:${y};width:${size}px;height:${size}px;transform:rotate(${rot}deg);opacity:.95" viewBox="0 0 200 200"><polygon fill="${color}" points="100,0 122,68 196,68 138,108 156,180 100,140 44,180 62,108 4,68 78,68"/></svg>`;
+      const headlineHTML = slide.h1.replace(/_([^_]+)_/g, `<em style="font-style:italic;color:${B.green};font-weight:900">$1</em>`).replace(/\*([^*]+)\*/g, `<span style="font-style:italic;color:${B.purple};font-weight:900">$1</span>`);
+      const screenContent = slide.screen || `
+        <div style="padding:24px;background:linear-gradient(180deg,${B.green} 0%,${B.green} 35%,#fff 35%);height:100%">
+          <div style="height:140px"></div>
+          <div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#34d399,${B.green});margin:0 auto;border:4px solid #fff"></div>
+          <div style="text-align:center;font-size:14px;color:#9ca3af;margin-top:14px">Paciente</div>
+          <div style="text-align:center;font-size:22px;font-weight:800;color:${B.ink};margin-top:2px">Jéssica Nascimento</div>
+          <div style="text-align:center;margin-top:8px"><span style="background:${B.greenLight};color:${B.green};font-size:12px;font-weight:800;padding:4px 14px;border-radius:999px">Plano alimentar</span></div>
+          <div style="margin-top:28px;padding:0 8px">
+            <div style="font-size:14px;font-weight:700;color:${B.ink};margin-bottom:10px">Refeições:</div>
+            ${['Café da Manhã · 08:00','Almoço · 12:00','Lanche · 15:00'].map(r => `
+              <div style="background:#fff;border:1px solid #eef0f3;border-radius:14px;padding:12px;margin-bottom:10px">
+                <div style="font-size:14px;font-weight:700;color:${B.ink}">${r}</div>
+                <div style="font-size:11px;color:#9ca3af;margin-top:4px">Banana · 75g · Canela · 2g</div>
+              </div>`).join('')}
+          </div>
+        </div>`;
+      const inner = `
+        <div style="position:absolute;inset:0;background:${slide.bgDark ? B.ink : '#EFEFEF'}"></div>
+        ${splatter(B.green, '-40px', '120px', 320, -15)}
+        ${splatter(B.purple, '660px', '80px', 280, 25)}
+        ${splatter('#22d3ee', '720px', '900px', 200, -10)}
+        ${splatter(B.green, '-20px', '950px', 260, 18)}
+        <div style="position:relative;text-align:center;padding-top:60px">
+          <h1 style="font-size:64px;color:${slide.bgDark ? '#fff' : B.ink};line-height:1.1;max-width:880px;margin:0 auto;font-weight:900">${headlineHTML}</h1>
+        </div>
+        <div style="position:relative;display:flex;justify-content:center;align-items:center;flex:1;margin-top:24px">
+          <div style="position:relative;width:440px;height:920px;transform:rotate(-4deg)">
+            <div style="position:absolute;inset:0;background:#0a0a0a;border-radius:56px;padding:12px;box-shadow:0 40px 80px rgba(0,0,0,.35)">
+              <div style="width:100%;height:100%;background:#fff;border-radius:46px;overflow:hidden;position:relative">
+                <div style="position:absolute;top:14px;left:50%;transform:translateX(-50%);width:100px;height:28px;background:#000;border-radius:20px;z-index:2"></div>
+                <div style="height:100%">${screenContent}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="position:relative;text-align:center;padding-bottom:8px"><span style="font-size:18px;font-weight:800;color:${slide.bgDark ? 'rgba(255,255,255,.7)' : B.inkSoft};letter-spacing:.18em;text-transform:uppercase">NUTRISYSTEM · APP</span></div>`;
+      return shell(`<div style="display:flex;flex-direction:column;height:100%;position:relative">${inner}</div>`, slide.bgDark ? B.ink : '#EFEFEF', slide.bgDark ? '#fff' : B.ink);
+    }
     case 'iphone-mockup': {
       // Mockup iPhone inspirado em Dietitian: lista de refeições + próximas consultas
       const themes = { white: ['#fff', B.ink], surface: [B.surface, B.ink], dark: [B.ink, '#fff'] };

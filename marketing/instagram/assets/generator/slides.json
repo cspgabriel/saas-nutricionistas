@@ -64,7 +64,7 @@
     {
       "id": "05-plano-alimentar",
       "slides": [
-        { "kind": "cover-gradient", "title": "Plano alimentar completo em 30 segundos.", "tag": "COM IA GEMINI" },
+        { "kind": "phone-spotlight", "h1": "Visualize os _planos alimentares_ dos pacientes." },
         { "kind": "feature-list", "theme": "white", "h1": "Você preenche 6 campos.", "items": ["👤  Paciente: Carla, 34, 72kg", "🎯  Objetivo: emagrecimento", "⛔  Restrições: lactose, glúten", "🏋️  Treino: 4x/semana", "💚  Preferências culturais", "🕐  Janela: 5 refeições"] },
         { "kind": "title-body", "theme": "dark", "h1": "✨  Gerando...", "body": "Calculando macros · ajustando restrições · respeitando preferências culturais" },
         { "kind": "feature-list", "theme": "white", "tag": "PRONTO. 30s.", "h1": "Plano gerado.", "items": ["🍳  5 refeições estruturadas", "🧪  Macros calculados (P/C/G)", "🔁  Substituições por refeição", "🛒  Lista de compras automática"] },
