@@ -1,0 +1,110 @@
+{
+  "brand": {
+    "green": "#10B981",
+    "greenDark": "#059669",
+    "greenLight": "#ECFDF5",
+    "ink": "#1C1C1E",
+    "inkSoft": "#8E8E93",
+    "surface": "#F5F5F7",
+    "white": "#FFFFFF",
+    "red50": "#FEF2F2",
+    "red500": "#EF4444",
+    "orange50": "#FFF7ED",
+    "orange500": "#F97316",
+    "amber50": "#FFFBEB",
+    "amber500": "#F59E0B",
+    "purple": "#A855F7"
+  },
+  "posts": [
+    {
+      "id": "01-manifesto",
+      "slides": [
+        { "kind": "cover-green", "title": "Nutricionista não foi formado pra digitar prontuário.", "brand": "NutriSystem" },
+        { "kind": "title-body", "theme": "white", "h1": "A conta não fecha.", "body": "5 anos de faculdade, especialização, CRN ativo — pra passar 40% do dia digitando coisa que um software resolve em 2 cliques." },
+        { "kind": "feature-list", "theme": "surface", "h1": "A gente entendeu o problema.", "items": ["📋  Prontuário que se preenche sozinho", "🍽️  Plano alimentar com IA em 30s", "📅  Agenda + cobrança no mesmo lugar"] },
+        { "kind": "title-body", "theme": "dark", "h1": "NutriSystem.", "body": "O sistema feito por quem entende consultório, pra quem vive consultório. Sem treinamento de 3 horas. Sem feature que ninguém usa." },
+        { "kind": "title-body", "theme": "white", "h1": "Tudo o que importa em uma tela.", "body": "Nada do que não importa." },
+        { "kind": "cta-green", "h1": "Começa hoje, de graça.", "button": "Criar conta em 2 min", "footnote": "Estudante? Pra você é sempre grátis." }
+      ]
+    },
+    {
+      "id": "02-tres-dores",
+      "slides": [
+        { "kind": "patients-table", "tag": "ISSO É O SEU CONSULTÓRIO HOJE", "h1": "3 horas atrasada. 14 pacientes. Sem tempo de respirar.",
+          "rows": [
+            { "name": "Cíntia Moreira", "label": "Consulta 2 · 14/05", "progress": 33, "status": "Pendente" },
+            { "name": "Taysa Pinheiro", "label": "Consulta inicial · 07/05", "progress": 33, "status": "Pendente" },
+            { "name": "João Souza Silva", "label": "Consulta 2 · 14/05", "progress": 33, "status": "Ativo" },
+            { "name": "Lair Ribeiro", "label": "Consulta inicial · 07/05", "progress": 0, "status": "Pendente" },
+            { "name": "Itana Cruz", "label": "Concluído · 11/06", "progress": 100, "status": "Concluído" }
+          ], "footer": "É possível ver isso em uma tela. Ou continuar caçando em 4 planilhas." },
+        { "kind": "dor", "bg": "#FEF2F2", "fg": "#EF4444", "icon": "⏱", "h2": "Prontuário no Word.", "body": "Você abre o template, apaga os campos, cola dos pacientes anteriores. 12 minutos por consulta. 4h por semana." },
+        { "kind": "dor", "bg": "#FFF7ED", "fg": "#F97316", "icon": "⚠️", "h2": "Plano alimentar genérico.", "body": "Sempre os mesmos 5 cardápios reciclados. Paciente percebe. Você sabe. Mas não tem tempo de fazer um novo." },
+        { "kind": "dor", "bg": "#FFFBEB", "fg": "#F59E0B", "icon": "🗂", "h2": "Dados em 4 lugares diferentes.", "body": "Agenda no Google. Prontuário no Drive. Cobrança no WhatsApp. Algo sempre escapa." },
+        { "kind": "cta-green", "h1": "Se isso é seu dia, a NutriSystem é seu sistema.", "button": "Conhecer →", "footnote": "14 dias grátis · sem cartão" }
+      ]
+    },
+    {
+      "id": "03-tempo-real",
+      "slides": [
+        { "kind": "stat", "theme": "dark", "tag": "DADO REAL · CONSULTÓRIO DE NUTRIÇÃO", "stat": "4h12min", "subhead": "é o tempo médio por semana que um nutri perde digitando prontuário no Word.", "footer": "Na NutriSystem, prontuário se preenche sozinho a partir da consulta. Você ganha uma manhã livre por semana." }
+      ]
+    },
+    {
+      "id": "04-prontuario",
+      "slides": [
+        { "kind": "iphone-mockup", "theme": "white", "tag": "TELA REAL DO APP", "h1": "Tudo num lugar.", "body": "Próxima refeição, próximos pacientes e agenda em uma tela." },
+        { "kind": "ba", "side": "antes", "tag": "ANTES", "body": "Abrir template. Apagar. Copiar. Colar. 12 minutos." },
+        { "kind": "ba", "side": "depois", "tag": "COM NUTRISYSTEM", "body": "Você fala, a IA estrutura. 2 minutos pra revisar e salvar." },
+        { "kind": "steps", "theme": "white", "h1": "Como funciona", "steps": ["🎙️  Grava a consulta (ou digita topicalmente)", "✨  IA Gemini estrutura em queixa, anamnese, plano", "📄  Você revisa e assina digitalmente"] },
+        { "kind": "title-body", "theme": "dark", "h1": "Buscável. Pra sempre.", "body": "Procura \"alergia a lactose\" e acha todos os pacientes em 1 segundo. Acabou aquela caçada no Drive." },
+        { "kind": "cta-green", "h1": "Testa o prontuário inteligente.", "button": "Demo grátis →", "footnote": "Sem cartão" }
+      ]
+    },
+    {
+      "id": "05-plano-alimentar",
+      "slides": [
+        { "kind": "cover-gradient", "title": "Plano alimentar completo em 30 segundos.", "tag": "COM IA GEMINI" },
+        { "kind": "feature-list", "theme": "white", "h1": "Você preenche 6 campos.", "items": ["👤  Paciente: Carla, 34, 72kg", "🎯  Objetivo: emagrecimento", "⛔  Restrições: lactose, glúten", "🏋️  Treino: 4x/semana", "💚  Preferências culturais", "🕐  Janela: 5 refeições"] },
+        { "kind": "title-body", "theme": "dark", "h1": "✨  Gerando...", "body": "Calculando macros · ajustando restrições · respeitando preferências culturais" },
+        { "kind": "feature-list", "theme": "white", "tag": "PRONTO. 30s.", "h1": "Plano gerado.", "items": ["🍳  5 refeições estruturadas", "🧪  Macros calculados (P/C/G)", "🔁  Substituições por refeição", "🛒  Lista de compras automática"] },
+        { "kind": "cta-green", "h1": "Seu próximo plano sai do seu jeito — sem você suar.", "button": "Testar IA grátis →", "footnote": "Sem cartão" }
+      ]
+    },
+    {
+      "id": "06-ia-explainer",
+      "slides": [
+        { "kind": "title-body", "theme": "dark", "h1": "\"Mas e a LGPD?\"", "body": "A pergunta mais frequente. Vamos responder." },
+        { "kind": "icon-card", "theme": "white", "icon": "🔒", "h2": "O dado do paciente é seu. Não nosso.", "body": "Firebase (Google Cloud), criptografia em trânsito e em repouso. Você exporta tudo quando quiser. A gente nunca vende, nunca treina IA com seu dado." },
+        { "kind": "icon-card", "theme": "surface", "icon": "🛡", "h2": "A IA não enxerga o paciente.", "body": "Quando geramos plano, mandamos pra IA só dados clínicos anonimizados. Nome, CPF, foto: nunca saem do seu banco." },
+        { "kind": "icon-card", "theme": "white", "icon": "📜", "h2": "Compatível com a Resolução CFN 599/2018.", "body": "Guarda mínima de 20 anos, assinatura digital ICP-Brasil opcional, log de alteração. Auditável." },
+        { "kind": "cta-green", "h1": "Tranquilo? Vem testar.", "button": "Criar conta grátis →", "footnote": "Sem cartão" }
+      ]
+    },
+    {
+      "id": "07-antes-depois",
+      "slides": [
+        { "kind": "title-body", "theme": "white", "h1": "Antes vs Depois.", "body": "Um consultório de nutrição com e sem NutriSystem." },
+        { "kind": "feature-list", "theme": "red", "tag": "ANTES", "h1": "", "items": ["❌  12 min por prontuário", "❌  Plano alimentar reciclado", "❌  Agenda, cobrança e prontuário em 3 sistemas", "❌  4h/semana só com administrativo", "❌  Mensalidade de 3 ferramentas"] },
+        { "kind": "feature-list", "theme": "greenLight", "tag": "COM NUTRISYSTEM", "h1": "", "items": ["✓  2 min por prontuário (IA estrutura)", "✓  Plano alimentar único, gerado em 30s", "✓  Tudo num só lugar", "✓  4h/semana de volta", "✓  Uma só mensalidade — começa grátis"] },
+        { "kind": "cta-green", "h1": "Qual lado você quer estar amanhã?", "button": "Migrar agora →", "footnote": "Importação assistida · grátis pra estudante" }
+      ]
+    },
+    {
+      "id": "08-case-joana",
+      "slides": [
+        { "kind": "case-card", "tag": "CASE NUTRISYSTEM", "h1": "Joana recuperou uma manhã da semana.", "initials": "J", "name": "Joana M., 31", "role": "Nutri clínica · BH · 14 pacientes/sem", "quote": "Eu não voltaria pro Word nem se a NutriSystem fechasse amanhã. Eu pago alguém pra programar igual antes de voltar a digitar prontuário.", "kpis": [ { "value": "9 → 2min", "label": "tempo por prontuário" }, { "value": "+6/sem", "label": "atendimentos extras" }, { "value": "5min", "label": "plano alimentar IA" }, { "value": "100%", "label": "cobrança automática" } ] },
+        { "kind": "title-body", "theme": "white", "h1": "Antes da NutriSystem:", "body": "14 pacientes/semana, prontuário no Word, plano alimentar no Excel. Sextas ficavam pra \"colocar tudo em ordem\"." },
+        { "kind": "feature-list", "theme": "surface", "h1": "O que mudou em 30 dias:", "items": ["⏱  9min → 2min por prontuário", "🤖  Plano alimentar IA, enviado em 5min", "💸  Cobrança automática via PIX", "📈  +6 atendimentos/semana sem aumentar carga"] },
+        { "kind": "quote-green", "quote": "Eu não voltaria pro Word nem se a NutriSystem fechasse amanhã. Eu pago alguém pra programar igual antes de voltar a digitar prontuário.", "author": "Joana, nutri clínica" },
+        { "kind": "cta-green", "h1": "Sua história pode ser a próxima.", "button": "Começar grátis →", "footnote": "14 dias · sem cartão" }
+      ]
+    },
+    {
+      "id": "09-cta-comecar",
+      "slides": [
+        { "kind": "cta-final", "h1": "Crie sua conta em 2 minutos.", "bullets": ["🟢  Grátis pra estudante. Pra sempre.", "🟢  14 dias free pra nutri com CRN.", "🟢  Sem cartão de crédito."], "url": "nutrisystem.app/comecar", "footnote": "Você sai com o primeiro plano alimentar pronto." }
+      ]
+    }
+  ]
+}
