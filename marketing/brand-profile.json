@@ -1,0 +1,88 @@
+{
+  "produto": {
+    "nome": "NutriSystem",
+    "tagline": "Foque no paciente, nós cuidamos da gestão.",
+    "categoria": "SaaS para consultórios de nutrição",
+    "publico": "Nutricionistas clínicos, esportivos e estudantes de nutrição",
+    "site_app": "AI Studio app (Firebase + React + Gemini)",
+    "diferencial": "Prontuário inteligente, planos alimentares com IA, agenda, faturamento e relatórios em um só lugar",
+    "modelo": "Freemium — grátis para estudantes, sem cartão de crédito"
+  },
+  "promessa": {
+    "headline": "Foque no paciente, nós cuidamos da gestão.",
+    "subheadline": "Transforme a rotina do seu consultório de nutrição com um sistema inteligente, rápido e focado em resultados reais.",
+    "prova_social": "+12.932 nutricionistas usando"
+  },
+  "dores": [
+    "Horas digitando prontuários e caçando códigos manualmente",
+    "Receituários genéricos e faturamentos travados por falhas operacionais",
+    "Dados espalhados entre sistemas que não se conversam (papel, planilhas, WhatsApp)",
+    "Tempo demais em tarefa administrativa, pouco tempo com o paciente",
+    "Plano alimentar feito no Word, sem padrão, sem branding"
+  ],
+  "modulos": [
+    "Dashboard com KPIs do consultório",
+    "Agenda integrada",
+    "Prontuário eletrônico",
+    "Planos alimentares (com IA Gemini)",
+    "Pacientes & evolução",
+    "Faturamento & cobrança",
+    "Relatórios em PDF",
+    "Gestão de equipe (multi-nutri)",
+    "Marketing Insights",
+    "AI Chatbot para suporte"
+  ],
+  "identidade_visual": {
+    "cores": {
+      "primary": "#10B981",
+      "primary_hover": "#059669",
+      "ink": "#1C1C1E",
+      "ink_soft": "#8E8E93",
+      "surface": "#F5F5F7",
+      "surface_glass": "rgba(255,255,255,0.7)",
+      "white": "#FFFFFF",
+      "accent_purple": "#A855F7",
+      "alert_red": "#EF4444",
+      "alert_orange": "#F97316",
+      "alert_amber": "#F59E0B"
+    },
+    "fonte": "Geist Variable (system / sans)",
+    "estilo": "Apple-inspired — glassmorphism sutil, muito espaço em branco, cantos arredondados (16-30px), sombras suaves verde-menta",
+    "icone_logo": "ClipboardList (lucide-react) em quadrado verde-menta com cantos arredondados",
+    "vibe": "Clean, premium, técnico mas acessível. Nada de 'fofo nutri'. Tom: Notion + Linear + Apple Health."
+  },
+  "voz": {
+    "tom": "Direto, técnico-leve, conversacional. Sem jargão de marketing. Sem clichê de 'transforme sua vida'. Pra profissional que valoriza tempo.",
+    "evitar": [
+      "Emoji em excesso (🥑🍎 nada)",
+      "Linguagem motivacional vazia",
+      "'Revolucione', 'transforme', 'descomplicar' batido",
+      "Frutas e folhinhas de salada nos visuais"
+    ],
+    "usar": [
+      "Números concretos (tempo economizado, % de produtividade)",
+      "Comparações honestas (antes/depois real)",
+      "Termos técnicos quando agregam (CRN, ASBRAN, ANS, prontuário)",
+      "Verbo no imperativo curto"
+    ]
+  },
+  "instagram": {
+    "handle_sugerido": "@nutrisystem.app",
+    "bio": "O sistema que devolve seu tempo de volta.\nProntuário + agenda + planos com IA pra nutricionistas.\n🟢 Grátis pra estudantes\n👇 Começa em 2 min",
+    "link_bio": "nutrisystem.app/comecar",
+    "categoria_perfil": "Software",
+    "highlights": [
+      {"nome": "Tour", "capa": "ícone clipboard"},
+      {"nome": "IA", "capa": "ícone sparkle"},
+      {"nome": "Cases", "capa": "ícone aspas"},
+      {"nome": "Updates", "capa": "ícone foguete"},
+      {"nome": "Preços", "capa": "ícone tag"},
+      {"nome": "Suporte", "capa": "ícone chat"}
+    ]
+  },
+  "hashtags": {
+    "core": ["#nutricionista", "#nutricaoclinica", "#consultoriodenutricao", "#nutricionistabrasil"],
+    "produto": ["#softwareparanutricionista", "#prontuarionutricional", "#planoalimentar", "#nutritech"],
+    "amplas": ["#nutricaoesportiva", "#nutricaofuncional", "#nutrologia", "#crn"]
+  }
+}
